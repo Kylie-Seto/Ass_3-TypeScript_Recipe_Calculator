@@ -1,7 +1,16 @@
-import './style.css'
-import { defaultPantry } from "../src/UI/UIpantry"; // or wherever you put the function
-import { DEFAULT_PANTRY } from "../src/data/defaultPantry";
+/* main.ts
+  - initializes the application
+  - creates instances of Pantry, StorageService, and UI
+  - starts the UI
+*/
 
-document.addEventListener("DOMContentLoaded", () => {
-    defaultPantry(DEFAULT_PANTRY);
-});
+import "./style.css";
+import { Pantry } from "./models/pantry";
+import { StorageService } from "./services/storageService";
+import { UI } from "./ui";
+
+const pantry = new Pantry(); // initializes default pantry
+const storageService = new StorageService();
+
+const app = new UI(pantry, storageService);
+app.init();

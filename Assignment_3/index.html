@@ -1,325 +1,363 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Builder</title>
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Recipe Builder</title>
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="/src/style.css" />
+    </head>
+    <body>
+      <div class="container-fluid py-4 px-4">
+        <h1>Recipe Builder</h1>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-  </head>
-<!-- <body>
-    <div class="m-5 d-flex flex-column">
-      <h1>Recipe Builder</h1>
-      <table id="pantryTable" class="table table-striped table-bordered table-responsive">
-        <caption>Recipe Builder</caption>
-        <tr class="table table-secondary table-bordered">Recipe Builder</tr>
-        <thead class="table table-light table-bordered">
-          <tr>
-            <h1>test</h1>
-            <th scope="row">Name</th>
+        <div class="row g-3">
+          <!--  LEFT — Pantry-->
+          <div class="col-lg-7">
+            <div class="pantry-card h-100">
+              <!-- Pantry header row -->
 
-          </tr>
-
-        </thead>
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Cal</th>
-            <th scope="col">P</th>
-            <th scope="col">C</th>
-            <th scope="col">F</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-      </table>
-
-    </div>
-
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body> -->
-
-  <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Builder</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/src/style.css" />
-    
-  </head>
-  <body>
-    <div class="container-fluid py-4 px-4">
-      <h1>Recipe Builder</h1>
-
-      <div class="row g-3">
-        <!-- ═══════════════════ LEFT — Pantry ═══════════════════ -->
-        <div class="col-lg-7">
-          <div class="pantry-card h-100">
-            <!-- Pantry header row -->
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <div>
-                <p class="card-label">Pantry</p>
-                <p class="card-sublabel">Nutrition per 100g</p>
-              </div>
-              <button
-                class="btn btn-outline-secondary btn-add-pantry"
-                id="openAddIngredientModal"
-              >
-                + Add Ingredient
-              </button>
-            </div>
-
-            <!-- Pantry table -->
-            <div class="table-responsive">
-              <table class="table table-borderless mb-0" id="pantryTable">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th class="text-end">Cal</th>
-                    <th class="text-end">P</th>
-                    <th class="text-end">C</th>
-                    <th class="text-end">F</th>
-                    <th></th>
-                    <!-- Add col -->
-                    <th></th>
-                    <!-- Remove col -->
-                  </tr>
-                </thead>
-                
-                <!-- Default pantry function populates body upon page load-->
-                <tbody id="pantryTableBody">
-                 
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══════════════════ RIGHT — Current Recipe + Totals ═══════════════════ -->
-        <div class="col-lg-5 d-flex flex-column gap-3">
-          <!-- Current Recipe -->
-          <div class="panel-card">
-            <h6>Current Recipe</h6>
-            <div class="table-responsive">
-              <table class="table table-borderless mb-0" id="recipeTable">
-                <thead>
-                  <tr>
-                    <th>Ingredient</th>
-                    <th class="text-end">Grams</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="recipeTableBody">
-                  <!-- Rendered by ui.ts — empty state shown below as placeholder -->
-                  <tr id="emptyRecipeRow">
-                    <td colspan="3" class="empty-recipe">
-                      No ingredients yet. Add items from the pantry.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Totals -->
-          <div class="panel-card">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="mb-0">Totals</h6>
-              <span class="totals-meta" id="totalsMeta">Regular • 0 item(s)</span>
-            </div>
-            <div class="totals-grid">
-              <div class="totals-cell">
-                <p class="totals-label">Calories</p>
-                <p class="totals-value" id="totalCalories">0</p>
-              </div>
-              <div class="totals-cell">
-                <p class="totals-label">Protein (g)</p>
-                <p class="totals-value" id="totalProtein">0</p>
-              </div>
-              <div class="totals-cell">
-                <p class="totals-label">Carbs (g)</p>
-                <p class="totals-value" id="totalCarbs">0</p>
-              </div>
-              <div class="totals-cell">
-                <p class="totals-label">Fat (g)</p>
-                <p class="totals-value" id="totalFat">0</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════════════ BOTTOM BAR ═══════════════════ -->
-      <div class="bottom-bar">
-        <div class="row g-3 align-items-end">
-          <div class="col-md-4">
-            <label for="recipeName">Recipe Name</label>
-            <input
-              type="text"
-              id="recipeName"
-              class="form-control form-control-sm"
-              placeholder="e.g. Grilled Chicken Steak"
-            />
-          </div>
-          <div class="col-md-4">
-            <label for="recipeType">Recipe Type</label>
-            <select id="recipeType" class="form-select form-select-sm">
-              <!-- Populated by ui.ts from RECIPE_CATEGORIES -->
-            </select>
-          </div>
-          <div class="col-md-4 d-flex gap-2 justify-content-end">
-            <button class="btn btn-outline-secondary btn-sm px-3" id="clearFormBtn">
-              Clear Form
-            </button>
-            <button class="btn btn-success btn-sm px-4" id="saveBtn">Save</button>
-            <button class="btn btn-warning btn-sm px-4" id="loadBtn">Load</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════ MODAL — Load: Saved Recipes List ═══════════════════ -->
-    <div class="modal fade" id="loadModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 pb-0">
-            <h5 class="modal-title fw-bold">Saved Recipes</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body pt-2">
-            <!-- List view -->
-            <div id="recipeListView">
-              <div id="savedRecipesList">
-                <!-- Populated by ui.ts — example rows shown for layout reference -->
-                <div class="modal-recipe-row">
-                  <div class="d-flex align-items-center gap-2">
-                    <span>Tofu Fried Rice</span>
-                    <span class="recipe-badge badge-vegetarian">Vegetarian</span>
+              <div class="card ">
+                <div
+                  class="card-header d-flex justify-content-between align-items-start"
+                >
+                  <div>
+                    <h5 class="mb-0">Pantry</h5>
+                    <small>Nutrition per 100g</small>
+                    <small class="fst-italic"><span class="fw-bold">Add</span> - adds item to recipe. <span class="fw-bold">Remove</span> - deletes item from pantry</small>
                   </div>
-                  <button class="btn btn-outline-secondary btn-sm" data-recipe-id="1">View</button>
+
+                  <button
+                    class="btn btn-outline-secondary btn-add-pantry"
+                    id="openAddIngredientModal"
+                  >
+                    + Add Ingredient
+                  </button>
                 </div>
-                <div class="modal-recipe-row">
-                  <div class="d-flex align-items-center gap-2">
-                    <span>Grilled Chicken Steak</span>
-                    <span class="recipe-badge badge-regular">Regular</span>
-                  </div>
-                  <button class="btn btn-outline-secondary btn-sm" data-recipe-id="2">View</button>
+              </div>
+
+              <!-- Pantry table -->
+              <div class="table table-bordered">
+                <table
+                  class="table table-striped table-bordered mb-0"
+                  id="pantryTable"
+                >
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th class="text-end">Cal</th>
+                      <th class="text-end">P</th>
+                      <th class="text-end">C</th>
+                      <th class="text-end">F</th>
+                      <th></th>
+                      <!-- Add col -->
+                      <th></th>
+                      <!-- Remove col -->
+                    </tr>
+                  </thead>
+
+                  <!-- Default pantry function populates body upon page load-->
+                  <tbody id="pantryTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════════════ RIGHT — Current Recipe + Totals ═══════════════════ -->
+
+          <div class="col-lg-5 d-flex flex-column gap-3">
+            <!-- Current Recipe -->
+
+            <div class="card panel-card">
+              <!-- Grey Header -->
+              <div class="card-header">
+                <h5 class="mb-0">Current Recipe</h5>
+              </div>
+
+              <!-- Table -->
+              <div class="card-body p-0">
+                <div class="table">
+                  <table
+                    class="table table-borderless table-striped mb-0"
+                    id="recipeTable"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Ingredient</th>
+                        <th >Grams</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="recipeTableBody">
+                      <!-- Rendered by ui.ts -->
+                      <tr id="emptyRecipeRow">
+                        <td colspan="3" class="empty-recipe text-center p-4">
+                          No ingredients yet. Add items from the pantry.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
 
-            <!-- Detail view (hidden by default, shown when View is clicked) -->
-            <div id="recipeDetailView" style="display: none">
-              <div class="d-flex align-items-center gap-2 mb-3">
-                <button class="btn btn-outline-secondary btn-sm" id="backToListBtn">← Back</button>
-                <span id="detailRecipeName" class="fw-semibold"></span>
-                <span id="detailRecipeBadge" class="recipe-badge"></span>
+            <!-- Totals -->
+            <div class="panel-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">Totals</h6>
+                <span class="totals-meta" id="totalsMeta"
+                  >Regular • 0 item(s)</span
+                >
               </div>
-              <table class="table table-borderless table-sm mb-2">
-                <thead>
-                  <tr>
-                    <th>Ingredient</th>
-                    <th class="text-end">Grams</th>
-                    <th class="text-end">Calories</th>
-                  </tr>
-                </thead>
-                <tbody id="detailIngredientList"></tbody>
-                <tfoot>
-                  <tr class="fw-bold border-top">
-                    <td>Total</td>
-                    <td></td>
-                    <td class="text-end" id="detailTotalCalories"></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" class="text-muted" style="font-size:0.8rem">
-                      Protein / Carbs / Fat
-                    </td>
-                    <td class="text-end" id="detailMacros" style="font-size:0.8rem"></td>
-                  </tr>
-                </tfoot>
-              </table>
+              <div class="totals-grid">
+                <div class="totals-cell">
+                  <p class="totals-label">Calories</p>
+                  <p class="totals-value" id="totalCalories">0</p>
+                </div>
+                <div class="totals-cell">
+                  <p class="totals-label">Protein (g)</p>
+                  <p class="totals-value" id="totalProtein">0</p>
+                </div>
+                <div class="totals-cell">
+                  <p class="totals-label">Carbs (g)</p>
+                  <p class="totals-value" id="totalCarbs">0</p>
+                </div>
+                <div class="totals-cell">
+                  <p class="totals-label">Fat (g)</p>
+                  <p class="totals-value" id="totalFat">0</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="modal-footer border-0 pt-0">
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
-              Close
-            </button>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ═══════════════════ MODAL — Add Ingredient to Pantry ═══════════════════ -->
-    <div class="modal fade" id="addIngredientModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-          <div class="modal-header border-0 pb-0">
-            <h5 class="modal-title fw-bold">Add Ingredient</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-2">
-              <label class="form-label form-label-sm mb-1">Name</label>
-              <input type="text" id="newIngrName" class="form-control form-control-sm" placeholder="e.g. Greek Yogurt" />
+        <!-- ═══════════════════ BOTTOM BAR ═══════════════════ -->
+        <div class="bottom-bar">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+              <label for="recipeName">Recipe Name</label>
+              <input
+                type="text"
+                id="recipeName"
+                class="form-control form-control-sm"
+                placeholder="e.g. Grilled Chicken Steak"
+              />
             </div>
-            <div class="mb-2">
-              <label class="form-label form-label-sm mb-1">Category</label>
-              <select id="newIngrCat" class="form-select form-select-sm">
-                <option value="Meat">Meat</option>
-                <option value="Protein">Protein</option>
-                <option value="Grain">Grain</option>
-                <option value="Dairy">Dairy</option>
-                <option value="Vegetable">Vegetable</option>
-                <option value="Fruit">Fruit</option>
-                <option value="Fat">Fat</option>
-                <option value="Other">Other</option>
+            <div class="col-md-4">
+              <label for="recipeType">Recipe Type</label>
+              <select id="recipeType" class="form-select form-select-sm">
+                <!-- Populated by ui.ts from RECIPE_CATEGORIES -->
               </select>
             </div>
-            <div class="row g-2">
-              <div class="col-6">
-                <label class="form-label form-label-sm mb-1">Calories</label>
-                <input type="number" id="newIngrCalories" class="form-control form-control-sm" placeholder="0" />
-              </div>
-              <div class="col-6">
-                <label class="form-label form-label-sm mb-1">Protein (g)</label>
-                <input type="number" id="newIngrProtein" class="form-control form-control-sm" placeholder="0" />
-              </div>
-              <div class="col-6">
-                <label class="form-label form-label-sm mb-1">Carbs (g)</label>
-                <input type="number" id="newIngrCarbs" class="form-control form-control-sm" placeholder="0" />
-              </div>
-              <div class="col-6">
-                <label class="form-label form-label-sm mb-1">Fat (g)</label>
-                <input type="number" id="newIngrFat" class="form-control form-control-sm" placeholder="0" />
-              </div>
+            <div class="col-md-4 d-flex gap-2 justify-content-end">
+              <button
+                class="btn btn-outline-secondary btn-sm px-3"
+                id="clearFormBtn"
+              >
+                Clear Form
+              </button>
+              <button class="btn btn-success btn-sm px-4" id="saveBtn">
+                Save
+              </button>
+              <button class="btn btn-warning btn-sm px-4" id="loadBtn">
+                Load
+              </button>
             </div>
-          </div>
-          <div class="modal-footer border-0 pt-0">
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary btn-sm" id="confirmAddIngredientBtn">Add</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ═══════════════════ TOAST ═══════════════════ -->
-    <div id="toast"></div>
+      <!-- ═══════════════════ MODAL — Load: Saved Recipes List ═══════════════════ -->
+      <div class="modal fade" id="loadModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <h5 class="modal-title fw-bold py-0">Saved Recipes</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body pt-3">
+              <!-- List view -->
+              <div id="recipeListView">
+                <div id="savedRecipesList">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+                </div>
+              </div>
+
+              <!-- Detail view (hidden by default, shown when View is clicked) -->
+              <div id="recipeDetailView" style="display: none">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <button
+                    class="btn btn-outline-secondary btn-sm"
+                    id="backToListBtn"
+                  >
+                    ← Back
+                  </button>
+                  <span id="detailRecipeName" class="fw-bold"></span>
+                  <span id="detailRecipeBadge" class="recipe-badge"></span>
+                </div>
+                <table class="table table-sm mb-2">
+                  <thead>
+                    <tr>
+                      <th class="fw-bold">Ingredient</th>
+                      <th class=" fw-bold text-end">Grams</th>
+                      <th class="fw-bold text-end">Calories</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detailIngredientList"></tbody>
+                  <!-- bold line above totals-->
+                  <tfoot>
+                    <tr class="fw-bold ">
+                      <td class="pt-2" style="border-top: 2px solid black">Total</td>
+                      <td class="pt-2" style="border-top: 2px solid black"></td>
+                      <td class="pt-2 text-end" style="border-top: 2px solid black" id="detailTotalCalories"></td>
+                    </tr>
+                    <tr>
+                      <td
+                        colspan="2"
+                        class="fw-bold"
+                        style="font-size: 0.8rem"
+                      >
+                        Protein / Carbs / Fat
+                      </td>
+                      <td
+                        class="text-end fw-bold"
+                        id="detailMacros"
+                        style="font-size: 0.8rem"
+                      ></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer pt-2">
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ MODAL — Add Ingredient to Pantry ═══════════════════ -->
+      <div
+        class="modal fade"
+        id="addIngredientModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+          <div class="modal-content">
+            <div class="modal-header pb-0">
+              <h5 class="modal-title fw-bold">Add Ingredient</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-2">
+                <label class="form-label form-label-sm mb-1">Name</label>
+                <input
+                  type="text"
+                  id="newIngrName"
+                  class="form-control form-control-sm"
+                  placeholder="e.g. Greek Yogurt"
+                />
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm mb-1">Category</label>
+                <select id="newIngrCat" class="form-select form-select-sm">
+                  <option value="Meat">Meat</option>
+                  <option value="Protein">Protein</option>
+                  <option value="Grain">Grain</option>
+                  <option value="Dairy">Dairy</option>
+                  <option value="Vegetable">Vegetable</option>
+                  <option value="Fruit">Fruit</option>
+                  <option value="Fat">Fat</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="row g-2">
+                <div class="col-6">
+                  <label class="form-label form-label-sm mb-1">Calories</label>
+                  <input
+                    type="number"
+                    id="newIngrCalories"
+                    class="form-control form-control-sm"
+                    placeholder="0"
+                  />
+                </div>
+                <div class="col-6">
+                  <label class="form-label form-label-sm mb-1"
+                    >Protein (g)</label
+                  >
+                  <input
+                    type="number"
+                    id="newIngrProtein"
+                    class="form-control form-control-sm"
+                    placeholder="0"
+                  />
+                </div>
+                <div class="col-6">
+                  <label class="form-label form-label-sm mb-1">Carbs (g)</label>
+                  <input
+                    type="number"
+                    id="newIngrCarbs"
+                    class="form-control form-control-sm"
+                    placeholder="0"
+                  />
+                </div>
+                <div class="col-6">
+                  <label class="form-label form-label-sm mb-1">Fat (g)</label>
+                  <input
+                    type="number"
+                    id="newIngrFat"
+                    class="form-control form-control-sm"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                id="confirmAddIngredientBtn"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ TOAST ═══════════════════ -->
+      <div id="toast"></div>
+       
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="module" src="/src/main.ts"></script>
+    </body>
+  </html>
 </html>

@@ -1,3 +1,5 @@
+// default pantry with 10 basic ingredients, rendered upon page load
+
 import type { Ingredient } from "../interfaces/ingredient";
 
 export const DEFAULT_PANTRY: Ingredient[] = [

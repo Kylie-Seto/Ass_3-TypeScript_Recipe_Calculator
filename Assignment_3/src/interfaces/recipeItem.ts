@@ -1,12 +1,8 @@
-/*Use interfaces to define the shape of data objects, such as:
-Ingredient
-Nutrition
-RecipeItem (ingredient + grams)*/
-
+// RecipeItem data structure = (ingredient + grams)
 
 import type { Ingredient } from "./ingredient";
 
-export interface RecipeItem{
-    recipeIngr: Ingredient;
-    ingrGrams: number;
+export interface RecipeItem {
+  recipeIngr: Ingredient;
+  ingrGrams: number;
 }

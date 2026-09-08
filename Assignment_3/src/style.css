@@ -1,238 +1,213 @@
-      body {
-        background-color: #f4f4f4;
-        font-family: system-ui, sans-serif;
-      }
+body {
+  background-color: #f4f4f4;
+  font-family: system-ui, sans-serif;
+}
 
-      h1 {
-        font-weight: 700;
-        font-size: 2rem;
-        margin-bottom: 1.25rem;
-      }
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+.card-header {
+  background-color: #f1f3f5; 
+  padding: 12px 16px;
+}
 
-      /* ── Pantry card ── */
-      .pantry-card {
-        background: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1rem 1.25rem;
-      }
+.card-header h5,
+.card-header h6 {
+  margin: 0;
+  font-weight: 600;
+}
 
-      .pantry-card .card-label {
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin-bottom: 0;
-        line-height: 1.2;
-      }
+.card-header small {
+  display: block;
+  color: #6c757d;
+}
+/* ── Pantry card ── */
+.pantry-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius:  8px;
+  padding: 1rem 1.25rem;
+}
 
-      .pantry-card .card-sublabel {
-        font-size: 0.78rem;
-        color: #6c757d;
-        margin-bottom: 0;
-      }
+/* Pantry table */
+#pantryTable thead th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-bottom: 2px solid #dee2e6;
+  padding: 6px 8px;
+}
 
-      /* Pantry table */
-      #pantryTable thead th {
-        font-weight: 600;
-        font-size: 0.85rem;
-        border-bottom: 2px solid #dee2e6;
-        padding: 6px 8px;
-      }
+#pantryTable tbody td {
+  font-size: 0.88rem;
+  vertical-align: middle;
+  padding: 5px 8px;
+  border-color: #f0f0f0;
+}
 
-      #pantryTable tbody td {
-        font-size: 0.88rem;
-        vertical-align: middle;
-        padding: 5px 8px;
-        border-color: #f0f0f0;
-      }
+.badge-cat {
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: #e9ecef;
+  color: #495057;
+  border-radius: 4px;
+  padding: 2px 7px;
+}
 
-      .badge-cat {
-        font-size: 0.72rem;
-        font-weight: 500;
-        background: #e9ecef;
-        color: #495057;
-        border-radius: 4px;
-        padding: 2px 7px;
-      }
+/* ── Right panel ── */
+.panel-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
 
-      /* ── Right panel ── */
-      .panel-card {
-        background: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1rem 1.25rem;
-      }
+.panel-card h6 {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
 
-      .panel-card h6 {
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
-      }
+#recipeTable thead th {
+  font-weight: 600;
+  font-size: 0.82rem;
+  border-bottom: 2px solid #dee2e6;
+  
+  padding: 5px 8px;
+}
 
-      #recipeTable thead th {
-        font-weight: 600;
-        font-size: 0.82rem;
-        border-bottom: 2px solid #dee2e6;
-        padding: 5px 8px;
-      }
+#recipeTable tbody td {
+  font-size: 0.88rem;
+  vertical-align: middle;
+  padding: 4px 8px;
+  border-color: #f0f0f0;
+  
+}
 
-      #recipeTable tbody td {
-        font-size: 0.88rem;
-        vertical-align: middle;
-        padding: 4px 8px;
-        border-color: #f0f0f0;
-      }
+.grams-input {
+  width: 70px;
+  font-size: 0.85rem;
+  padding: 2px 6px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  text-align: right;
+}
 
-      .grams-input {
-        width: 70px;
-        font-size: 0.85rem;
-        padding: 2px 6px;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-        text-align: right;
-      }
+.empty-recipe {
+  color: #adb5bd;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
 
-      .empty-recipe {
-        color: #adb5bd;
-        font-size: 0.85rem;
-        text-align: center;
-        padding: 1.5rem 0;
-      }
+/* ── Totals panel ── */
+.totals-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 2px;
+}
 
-      /* ── Totals panel ── */
-      .totals-label {
-        font-size: 0.75rem;
-        color: #6c757d;
-        margin-bottom: 2px;
-      }
+.totals-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 0;
+}
 
-      .totals-value {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #212529;
-        margin-bottom: 0;
-      }
+.totals-meta {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
 
-      .totals-meta {
-        font-size: 0.75rem;
-        color: #6c757d;
-      }
+.totals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
 
-      .totals-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-top: 0.5rem;
-      }
+.totals-cell {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
 
-      .totals-cell {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 6px;
-        padding: 10px 14px;
-      }
+/* ── Bottom bar ── */
+.bottom-bar {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
 
-      /* ── Bottom bar ── */
-      .bottom-bar {
-        background: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1rem 1.25rem;
-        margin-top: 1rem;
-      }
+.bottom-bar label {
+  font-size: 0.82rem;
+  color: #6c757d;
+  margin-bottom: 4px;
+  display: block;
+}
 
-      .bottom-bar label {
-        font-size: 0.82rem;
-        color: #6c757d;
-        margin-bottom: 4px;
-        display: block;
-      }
+/* ── Buttons ── */
+.btn-add-pantry {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
 
-      /* ── Buttons ── */
-      .btn-add-pantry {
-        font-size: 0.78rem;
-        padding: 3px 10px;
-        border-radius: 4px;
-      }
+.btn-sm-add {
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 4px;
+  min-width: 44px;
+}
 
-      .btn-sm-add {
-        font-size: 0.75rem;
-        padding: 2px 10px;
-        border-radius: 4px;
-        min-width: 44px;
-      }
+.btn-sm-remove {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
 
-      .btn-sm-remove {
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-      }
+.modal-recipe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
 
-      /* ── Modal ── */
-      .recipe-badge {
-        font-size: 0.7rem;
-        padding: 2px 8px;
-        border-radius: 20px;
-        font-weight: 600;
-      }
+.modal-recipe-row:last-child {
+  border-bottom: none;
+}
 
-      .badge-vegetarian {
-        background: #198754;
-        color: #fff;
-      }
+/* Detail view inside modal */
+#recipeDetailView table thead th {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
 
-      .badge-regular {
-        background: #6c757d;
-        color: #fff;
-      }
+#recipeDetailView table tbody td {
+  font-size: 0.85rem;
+}
 
-      .badge-highprotein {
-        background: #0d6efd;
-        color: #fff;
-      }
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #dc3545;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  display: none;
+  z-index: 9999;
+  max-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
-      .badge-lowcarb {
-        background: #fd7e14;
-        color: #fff;
-      }
-
-      .modal-recipe-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #f0f0f0;
-      }
-
-      .modal-recipe-row:last-child {
-        border-bottom: none;
-      }
-
-      /* Detail view inside modal */
-      #recipeDetailView table thead th {
-        font-size: 0.82rem;
-        font-weight: 600;
-      }
-
-      #recipeDetailView table tbody td {
-        font-size: 0.85rem;
-      }
-
-      /* Toast */
-      #toast {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        background: #dc3545;
-        color: #fff;
-        padding: 12px 20px;
-        border-radius: 6px;
-        font-size: 0.88rem;
-        display: none;
-        z-index: 9999;
-        max-width: 280px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      #toast.show {
-        display: block;
-      }
+#toast.show {
+  display: block;
+}

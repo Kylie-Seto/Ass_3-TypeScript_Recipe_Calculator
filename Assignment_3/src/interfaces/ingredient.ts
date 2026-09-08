@@ -1,7 +1,4 @@
-/*Use interfaces to define the shape of data objects, such as:
-Ingredient
-Nutrition
-RecipeItem (ingredient + grams)*/
+// ingredient data structure, which inherits from nutrition interface + ingrCategory
 
 import type { IngrCategory } from "../models/pantry";
 import type { Nutrition } from "./nutrition";

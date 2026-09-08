@@ -1,35 +1,22 @@
 /*
+create recipe
+get all recipes
+get by recipe id
 remove recipe
-load recipe
+set (load) recipe
 
 */
 
-import { Recipe, VegetarianRecipe, HighProteinRecipe, LowCarbRecipe } from "../models/recipe";
-import type { RecipeCategory } from "../models/recipe";
+import { createRecipe } from "../models/recipe";
+import type { Recipe, RecipeCategory } from "../models/recipe";
 
 export class RecipeService {
   private recipes: Recipe[] = [];
   private nextId = 1;
 
+  // recipe is assigned an id & is pushed to recipes array
   createRecipe(recipeName: string, recipeType: RecipeCategory): Recipe {
-    let recipe: Recipe;
-
-    // create the right subclass based on type
-    switch (recipeType) {
-      case "Vegetarian (blocks meat)":
-        recipe = new VegetarianRecipe(recipeName);
-        break;
-      case "High Protein (15g+ total protein)":
-        recipe = new HighProteinRecipe(recipeName);
-        break;
-      case "Low Carb (<50g total carbs)":
-        recipe = new LowCarbRecipe(recipeName);
-        break;
-      default:
-        recipe = new Recipe(recipeName, recipeType);
-    }
-
-    recipe.recipeId = this.nextId++;  // assign ID after creation
+    const recipe = createRecipe(this.nextId++, recipeName, recipeType);
     this.recipes.push(recipe);
     return recipe;
   }
@@ -41,25 +28,37 @@ export class RecipeService {
 
   // find one recipe by ID
   getById(recipeId: number): Recipe {
-    try{
-        const recipe = this.recipes.find(recipe => recipe.recipeId === recipeId);
-        if (!recipe) {
-            throw new Error(`Recipe with ID ${recipeId} not found.`);
-        }
-        return recipe;
-    }
-    catch (error) {
-        throw new Error(`Error occurred while fetching recipe with ID ${recipeId}`);
+    try {
+      const recipe = this.recipes.find(
+        (recipe) => recipe.recipeId === recipeId,
+      );
+      if (!recipe) {
+        throw new Error(`Recipe with ID ${recipeId} not found.`);
+      }
+      return recipe;
+    } catch (error) {
+      throw new Error(
+        `Error occurred while fetching recipe with ID ${recipeId}`,
+      );
     }
   }
 
   // remove an entire recipe
   removeRecipe(recipeId: number): void {
-    this.recipes = this.recipes.filter(recipe => recipe.recipeId !== recipeId);
+    this.recipes = this.recipes.filter(
+      (recipe) => recipe.recipeId !== recipeId,
+    );
   }
 
   // replace recipes list — used when loading from storage
   setRecipes(recipes: Recipe[]): void {
     this.recipes = recipes;
+
+    // to determine the next ID, find the maxID listed in recipes array & +1
+    const maxId = recipes.reduce(
+      (max, recipe) => Math.max(max, recipe.recipeId),
+      0,
+    );
+    this.nextId = maxId + 1;
   }
 }
